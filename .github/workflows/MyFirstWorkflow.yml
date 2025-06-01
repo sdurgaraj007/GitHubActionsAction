@@ -1,0 +1,22 @@
+name: My First Workflow
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    
+jobs:
+  MyFirstJob:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello World!"
+
+      - name: checkout
+        uses: actions/checkout@4.2.2
+        
+      - name: List files in the repository
+        run: |
+          echo "the repository ${{ github.repository }} contains the following files:"
+          tree
+      
+      

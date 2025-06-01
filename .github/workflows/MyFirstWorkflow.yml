@@ -4,13 +4,28 @@ on:
     branches:
       - main
   workflow_dispatch:
-    
+    inputs:
+      homedrive:
+        description: 'The home drive on the machine'
+        required: true
+      logLevel:
+        description: 'Log Level'
+        default: 'warning'
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
 jobs:
   MyFirstJob:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Hello World!"
-
+      
+      - run: |
+          echo "Homedrive: ${{ inputs.homedrive }}"
+          echo "Log level: ${{ inputs.logLevel }}"
+          
       - name: checkout
         uses: actions/checkout@4.2.2
         
